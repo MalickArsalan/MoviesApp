@@ -103,6 +103,9 @@ class OverviewFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 // Update the ViewModel with the new query
+                if(viewModelAdapter!!.originalList.isEmpty()) {
+                    viewModelAdapter!!.originalList = viewModel.movieList.value!!
+                }
                 viewModelAdapter!!.filter.filter(newText)
                 return true
             }
