@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/overviewFragment">
+
+    <fragment
+        android:id="@+id/overviewFragment"
+        android:name="com.lfd.mymovies.ui.overview.OverviewFragment"
+        android:label="OverviewFragment"
+        tools:layout = "@layout/fragment_overview"
+        >
+
+        <action
+            android:id="@+id/action_overviewFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.lfd.mymovies.ui.detail.MovieDetailFragment"
+        android:label="MovieDetailFragment"
+        tools:layout = "@layout/fragment_movie_detail">
+
+        <argument
+            android:name="selectedMovie"
+            app:argType="com.lfd.mymovies.data.domain.DomainMovie"
+            />
+
+    </fragment>
+</navigation>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+   <data>
+   <variable
+       name="movie"
+       type="com.lfd.mymovies.data.domain.DomainMovie" />
+
+      <variable
+          name="constant"
+          type="com.lfd.mymovies.utils.Constants" />
+
+      <variable
+          name="movieCallback"
+          type="com.lfd.mymovies.ui.overview.MoviesGridAdapter.MovieClick" />
+   </data>
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_margin="6dp">
+      <androidx.cardview.widget.CardView
+          android:onClick="@{() -> movieCallback.onClick(movie)}"
+          android:layout_width="200dp"
+          android:layout_height="225dp"
+          android:elevation="4dp"
+          app:cardCornerRadius="4dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent">
+
+         <androidx.constraintlayout.widget.ConstraintLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{constant.BASE_POSTER_IMAGE_URL + movie.posterPath}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic"
+               />
+
+         </androidx.constraintlayout.widget.ConstraintLayout>
+
+      </androidx.cardview.widget.CardView>
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+   <!-- <androidx.cardview.widget.CardView
+        android:layout_height="172dp"
+        android:layout_marginEnd="8dp"
+        android:layout_width="128dp">
+
+
+
+    <ImageView
+        android:id="@+id/movies_image"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="false"
+
+
+        tools:src="@tools:sample/backgrounds/scenic"/>
+
+    </androidx.cardview.widget.CardView>-->
+
+
+</layout>
