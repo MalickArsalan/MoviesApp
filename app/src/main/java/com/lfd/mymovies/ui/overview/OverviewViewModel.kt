@@ -18,7 +18,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 @RequiresApi(Build.VERSION_CODES.O)
 class OverviewViewModel(application: Application) : AndroidViewModel(application) {
@@ -32,6 +31,8 @@ class OverviewViewModel(application: Application) : AndroidViewModel(application
     private val _filteredMovies = MutableLiveData<List<DomainMovie?>>()
     val filteredMovies: LiveData<List<DomainMovie?>>
         get() = _filteredMovies
+
+    val searchChar: MutableLiveData<String> = MutableLiveData()
 
     var initialQuery: String = ""
 
@@ -54,16 +55,17 @@ class OverviewViewModel(application: Application) : AndroidViewModel(application
 
     init {
         startObservingNetworkState()
-        viewModelScope.launch {
+        searchChar.value = ""
+        /*viewModelScope.launch {
             try {
                 moviesRepository.refreshMovies()
             } catch (e: Exception) {
                 Timber.e(e.message)
             }
-        }
+        }*/
     }
 
-    fun refreshMoviesOnNetwrokAvailability() {
+    fun refreshMoviesOnNetworkAvailability() {
         if (movieList.value.isNullOrEmpty()) {
             viewModelScope.launch {
                 moviesRepository.refreshMovies()

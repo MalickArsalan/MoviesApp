@@ -30,9 +30,9 @@
             android:queryBackground="@android:color/transparent"
             android:queryHint="Search Movie..."
             android:searchIcon="@null"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout"
             app:layout_constraintVertical_bias="0.01"
@@ -47,7 +47,6 @@
             android:layout_marginTop="16dp"
             android:clipToPadding="false"
             android:paddingStart="8dp"
-
             android:paddingEnd="8dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -55,9 +54,10 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_moview"
-
             app:layout_constraintVertical_bias="0.0"
+
             app:listData="@{viewModel.movieList}"
+            app:searchChar="@{viewModel.searchChar}"
             app:spanCount="2"
 
             tools:listitem="@layout/movie_item"
@@ -67,15 +67,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Please check your internet!"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="Please check your internet!"
-            tools:text="Please check your internet"
             app:movieList="@{viewModel.movieList}"
-            app:statusTextError= "@{viewModel.networkStatus}"
-            android:textSize="24sp"
+            app:statusTextError="@{viewModel.networkStatus}"
+            tools:text="Please check your internet"
             tools:visibility="visible" />
 
         <ProgressBar
@@ -88,6 +88,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+
             app:movieList="@{viewModel.movieList}"
             app:statusProgressBar="@{viewModel.networkStatus}"
             tools:visibility="visible" />

@@ -34,7 +34,7 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 }
 
 @BindingAdapter("rating")
-fun ratingCalculation(ratingBar: RatingBar,ratingAverage: Double){
+fun ratingCalculation(ratingBar: RatingBar, ratingAverage: Double) {
     ratingBar.rating = ratingAverage.toFloat() / 2
 }
 
@@ -69,14 +69,16 @@ fun goneIfNotNull(view: View, movieList: List<DomainMovie>?, status: Connectivit
     }
 }
 
-@BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<DomainMovie>?) {
+
+@BindingAdapter(value = ["listData", "searchChar"], requireAll = false)
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<DomainMovie>?, searchChar: String) {
     val adapter = recyclerView.adapter as MoviesGridAdapter
 //    adapter.originalList = data!!
-    if(!data.isNullOrEmpty()){
+    if (!data.isNullOrEmpty()) {
         adapter.originalList = data.toList()
     }
-    adapter.submitList(data) {
-
-    }
+    if (searchChar.isEmpty())
+        adapter.submitList(data)
+    else
+        adapter.filter.filter(searchChar)
 }

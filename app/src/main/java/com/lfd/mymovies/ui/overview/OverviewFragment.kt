@@ -57,7 +57,7 @@ class OverviewFragment : Fragment() {
                 when (status) {
                     ConnectivityObserver.Status.Available -> {
                         Timber.d("Available")
-                        viewModel.refreshMoviesOnNetwrokAvailability()
+                        viewModel.refreshMoviesOnNetworkAvailability()
                     }
 
                     ConnectivityObserver.Status.Unavailable -> {
@@ -95,6 +95,7 @@ class OverviewFragment : Fragment() {
             layoutManager = GridLayoutManager(context, 2)
         }
 
+
         binding.searchMoview.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 // Handle query submission if needed
@@ -103,9 +104,10 @@ class OverviewFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 // Update the ViewModel with the new query
-                if(viewModelAdapter!!.originalList.isEmpty()) {
+                if (viewModelAdapter!!.originalList.isEmpty()) {
                     viewModelAdapter!!.originalList = viewModel.movieList.value!!
                 }
+                viewModel.searchChar.value = newText
                 viewModelAdapter!!.filter.filter(newText)
                 return true
             }
